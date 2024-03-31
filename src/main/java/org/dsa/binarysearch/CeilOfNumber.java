@@ -1,23 +1,23 @@
 package org.dsa.binarysearch;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class CeilOfNumber {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 5, 6, 7, 8, 11};
-        System.out.println(findCeil(arr, arr.length, 11));
+        log.info("{}",findCeil(arr, arr.length, 9));
     }
 
     private static int findCeil(int[] arr, int n, int target) {
 
-        if (arr[0] >= target) return arr[0];
-        if (target > arr[n - 1]) return -1;
+        if(target > arr[arr.length-1]) return -1;
         int low = 0;
         int high = n - 1;
         while (low <= high) {
             int mid = (low + high) / 2;
 
             if (arr[mid] == target) {
-                return arr[mid];
-            } else if (mid > 0 && arr[mid] > target && arr[mid - 1] < target) {
                 return arr[mid];
             }
             else if (arr[mid] < target) {
@@ -26,6 +26,6 @@ public class CeilOfNumber {
                 high = mid - 1;
             }
         }
-        return -1;
+        return arr[low];
     }
 }
